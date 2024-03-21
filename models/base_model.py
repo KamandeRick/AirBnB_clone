@@ -30,3 +30,9 @@ class BaseModel:
                     elif key == 'id':
                         value == str(value)
                     setattr(self, attribute_name, value)
+
+    def __str__(self):
+        """Returns the class represented as a string"""
+        class_name = type(self).__name__
+
+        return"[{}]({}) {}".format(class_name, self.id, self.__dict__)
