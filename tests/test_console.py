@@ -37,5 +37,12 @@ BaseModel  EOF   Review  User   create  help     show"""
             expected_output = ""
             self.assertEqual(expected_output, output_stream.getvalue().strip())
 
+    def test_quit(self):
+        """Test to check if quit command works as expected"""
+        with patch("sys.stdout", new=StringIO()) as output_stream:
+            HBNBCommand().onecmd("quit")
+            expected_output = ""
+            self.assertEqual(expected_output, output_stream.getvalue().strip())
+
     if __name__ == "__main__":
         unittest.main()
