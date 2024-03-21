@@ -27,4 +27,6 @@ class BaseModel:
                     attribute_name = attribute_mapping[key]
                     if key in ['created_at', 'updated_at']:
                         value = datetime.fromisoformat(value)
+                    elif key == 'id':
+                        value == str(value)
                     setattr(self, attribute_name, value)
