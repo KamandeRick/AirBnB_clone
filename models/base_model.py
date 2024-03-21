@@ -36,3 +36,11 @@ class BaseModel:
         class_name = type(self).__name__
 
         return"[{}]({}) {}".format(class_name, self.id, self.__dict__)
+
+    def to_dict(self):
+        """returns class represented as dictionary"""
+        dictionary = self.__dict__copy()
+        dictionary["__class__"] = type(self).__name__
+        dictionary["created_at"] = self.created_at.isoformat()
+        dictionary["updated_at"] = self.updated_at.isoformat()
+
