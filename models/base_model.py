@@ -4,6 +4,7 @@ from datetime import datetime
 import uuid
 import models
 
+
 class BaseModel:
     """Base class on which all models are based"""
 
@@ -27,4 +28,3 @@ class BaseModel:
                     if key in ['created_at', 'updated_at']:
                         value = datetime.fromisoformat(value)
                     setattr(self, attribute_name, value)
-
