@@ -44,3 +44,8 @@ class BaseModel:
         dictionary["created_at"] = self.created_at.isoformat()
         dictionary["updated_at"] = self.updated_at.isoformat()
         return dictionary
+
+    def save(self):
+        """updates updated_at with the current datetime"""
+        self.updated_at = dateime.now()
+        # models.storage.save()
