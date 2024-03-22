@@ -31,6 +31,32 @@ class FileStorage:
                 Key: value.to_dict() for key, value
                 in FileStorage.__objects.items()}
         j_string = dumps(dictionary_to_serialize)
-        filename = FileStorage.__file_path
-        with open(filename, 'w')as f:
+        file_name = FileStorage.__file_path
+        with open(file_name, 'w')as f:
             f.write(j_string)
+
+        # with open(FileStorage.__file_path, 'w') as f:
+        # dictionary_to_serialize = {}
+        # dictionary_to_serialize.update(FileStorage.__objects)
+        # for key, val in dictionary_to_serialize.items():
+        #   dictionary_to_serialize = val..to_dict()
+        #   json.dump(temp, f)
+
+    def reload(self):
+        """Desiarilizes JSON file"""
+        classes = ["BaseModel", "User", "State", "City",
+                   "Amenity", "Place", "Review"]
+        file_name = FileStorage.__file_path
+        if isfile(file_name):
+            with open(file_name, 'r') as f:
+                j_string = f.read()
+                dictionary_to_deserialize = loads(j_string)
+                for key, value in dictionary_to_desirialize.items():
+                    cls_name, obj_id = key.split(".")
+                    if cls_name in classes:
+                        class_obj = globals()[cls_name]
+                        instance = class_obj(**value)
+                        self.new(instance)
+
+                    # if class_name in allowed_classes:
+                    #    eval("self.new({}(**value))".format(class_name)
