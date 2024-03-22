@@ -11,7 +11,7 @@ from os.path import isfile
 from json import loads, dumps
 
 
-class FileSorage:
+class FileStorage:
     """serializes instances to  JSON file and vice versa"""
     __objects = {}
     __file_path = "file.json"
@@ -19,3 +19,13 @@ class FileSorage:
     def all(self):
         """returns the dictionary __objects"""
         return FileStorage.__objects
+
+    def new(self, obj):
+        """sets in __objects the obj with key <obj class name>.id"""
+        key = "{}.{}".format(obj.__class__.__name__, obj.id)
+        FileStorage.__objects[key] = obj
+
+    def save(self):
+        """serializes __objects to the JSON file (path: __file_path)"""
+
+
