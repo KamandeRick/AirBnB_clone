@@ -58,5 +58,5 @@ class FileStorage:
                         instance = class_obj(**value)
                         self.new(instance)
 
-                    # if class_name in allowed_classes:
-                    #    eval("self.new({}(**value))".format(class_name)
+                    # if cls_name in classes:
+                    #    eval("self.new({}(**value))".format(cls_name)
