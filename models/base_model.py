@@ -24,11 +24,10 @@ class BaseModel:
 
             for key, value in kwargs.items():
                 if key in attribute_mapping:
-                    attributr_name = attributr_mapping[key]
+                    attribute_name = attribute_mapping[key]
                     if key == "created_at" or key == "updated_at":
-                        setattr(self, key, datetime.fromisoformat(value))
-                    else:
-                        setattr(self, key, value)
+                        value = datetime.fromisoformat(value)
+                    setattr(self, attribute_name, value)
 
     def __str__(self):
         """Returns the class represented as a string"""
