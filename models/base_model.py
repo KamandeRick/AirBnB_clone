@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """Modeule defining base class for all models"""
-from datetime import datetime, date
+from datetime import datetime
 from uuid import uuid4
 import models
 
