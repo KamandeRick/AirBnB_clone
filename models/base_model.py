@@ -17,7 +17,7 @@ class BaseModel:
             models.storage.new(self)
         else:
             for key, value in kwargs.items():
-                if key, value == "__class__":
+                if key == "__class__":
                     continue
                 elif key == "created_at" or key == "updated_at":
                     setattr(self, key, datetime.fromisoformat(value))
