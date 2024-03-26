@@ -51,7 +51,7 @@ class FileStorage:
             with open(file_name, 'r') as f:
                 j_string = f.read()
                 dictionary_to_deserialize = loads(j_string)
-                for key, value in dictionary_to_desirialize.items():
+                for key, value in dictionary_to_deserialize.items():
                     cls_name, obj_id = key.split(".")
                     if cls_name in classes:
                         class_obj = globals()[cls_name]
