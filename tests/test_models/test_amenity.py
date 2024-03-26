@@ -5,6 +5,7 @@ import os
 from models.amenity import Amenity
 from models.engine.file_storage import FileStorage
 
+
 class TestAmenity(unittest.TestCase):
     """TestAmenity class docs"""
 
@@ -18,4 +19,3 @@ class TestAmenity(unittest.TestCase):
 
     if __name__ == "__main__":
         unittest.main()
-

@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 "Modeule defining base class for all models"""
-from datetime import datetime
-import uuid
+from datetime import datetime, date
+from uuid import uuid4
 import models
 
 
@@ -30,6 +30,8 @@ class BaseModel:
                     # elif key == 'id':
                         # value = str(value)
                     setattr(self, attribute_name, value)
+                elif key == "__class__":
+                    continue
 
     def __str__(self):
         """Returns the class represented as a string"""
