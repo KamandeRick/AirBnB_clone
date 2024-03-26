@@ -16,20 +16,24 @@ class BaseModel:
             self.updated_at = self.created_at
             models.storage.new(self)
         else:
-            attribute_mapping = {
-                     'created_at': 'created_at',
-                     'id': 'id',
-                     'updated_at': 'updated_at'
-                     }
+            # attribute_mapping = {
+            # 'created_at': 'created_at',
+            # 'id': 'id',
+            # 'updated_at': 'updated_at'
+            # }
 
             for key, value in kwargs.items():
-                if key in attribute_mapping:
-                    attribute_name = attribute_mapping[key]
-                    if key == "created_at" or key == "updated_at":
-                        value = datetime.fromisoformat(value)
-                    setattr(self, attribute_name, value)
-                elif key == "__class__":
+                # if key in attribute_mapping:
+                if key, value == "__class__":
                     continue
+                    # attribute_name = attribute_mapping[key]
+                elif key == "created_at" or key == "updated_at":
+                    # value = datetime.fromisoformat(value)
+                    setattr(self, key, datetime.fromisoformat(value))
+                # elif key == "__class__":
+                    # continue
+                else:
+                    setattr(self, key, value)
 
     def __str__(self):
         """Returns the class represented as a string"""
