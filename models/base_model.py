@@ -23,7 +23,9 @@ class BaseModel:
             }
 
             for key, value in kwargs.items():
-                if key in attribute_mapping:
+                if key == "__class__":
+                    continue
+                elif key in attribute_mapping:
                     attribute_name = attribute_mapping[key]
                     if key in ['created_at', 'updated_at']:
                         value = datetime.fromisoformat(value)
