@@ -15,7 +15,7 @@ class BaseModel:
             self.created_at = datetime.now()
             self.updated_at = self.created_at
             models.storage.new(self)
-        else:
+        elif:
             # attribute_mapping = {
             # 'created_at': 'created_at',
             # 'updated_at': 'updated_at',
