@@ -19,8 +19,14 @@ class BaseModel:
             for key, value in kwargs.items():
                 if key == "__class__":
                     continue
-                elif key == "created_at" or key == "updated_at":
-                    setattr(self, key, datetime.fromisoformat(value))
+                # elif key == "created_at" or key == "updated_at":
+                    # setattr(self, key, datetime.fromisoformat(value))
+                elif key == "updated_at":
+                    value = datetime.fromisoformat(value)
+                    self.updated_at = value
+                elif key == "created_at":
+                    value = datetime.fromisofromat(value)
+                    self.created_at = value
                 elif key == "id":
                     self.id = str(value)
                 # else:
