@@ -45,15 +45,17 @@ class BaseModel:
 
     def __str__(self):
         """Returns the class represented as a string"""
-        class_name = type(self).__name__
+        # class_name = type(self).__name__
+        class_name = self.__class__.__name__
         return "[{}]({}) {}".format(class_name, self.id, self.__dict__)
 
     def to_dict(self):
         """returns class represented as dictionary"""
         dictionary = self.__dict__.copy()
-        dictionary["__class__"] = type(self).__name__
+        # dictionary["__class__"] = type(self).__name__
         dictionary["created_at"] = self.created_at.isoformat()
         dictionary["updated_at"] = self.updated_at.isoformat()
+        dictionary["__class__"] = self.__class__.__name__
         return dictionary
 
     def save(self):
