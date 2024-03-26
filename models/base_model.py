@@ -30,8 +30,8 @@ class BaseModel:
                     # elif key == 'id':
                         # value = str(value)
                     setattr(self, attribute_name, value)
-                elif key == "__class__":
-                    continue
+                #elif key == "__class__":
+                    #continue
 
     def __str__(self):
         """Returns the class represented as a string"""
