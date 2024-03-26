@@ -24,7 +24,7 @@ class BaseModel:
 
             for key, value in kwargs.items():
                 if key == "__class__":
-                    continue
+                    pass
                 elif key in attribute_mapping:
                     attribute_name = attribute_mapping[key]
                     if key in ['created_at', 'updated_at']:
