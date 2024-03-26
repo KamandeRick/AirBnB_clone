@@ -29,7 +29,7 @@ class BaseModel:
                         value = datetime.fromisoformat(value)
                     # elif key == 'id':
                         # value = str(value)
-                    setattr(self, attribute_name, value)
+                setattr(self, attribute_name, value)
                 #elif key == "__class__":
                     #continue
 
