@@ -28,6 +28,8 @@ class BaseModel:
                     if key == "created_at" or key == "updated_at":
                         value = datetime.fromisoformat(value)
                     setattr(self, attribute_name, value)
+                elif key == "__class__":
+                    continue
 
     def __str__(self):
         """Returns the class represented as a string"""
