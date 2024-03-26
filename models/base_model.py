@@ -21,8 +21,10 @@ class BaseModel:
                     continue
                 elif key == "created_at" or key == "updated_at":
                     setattr(self, key, datetime.fromisoformat(value))
-                else:
-                    setattr(self, key, value)
+                elif key == "id":
+                    self.id = str(value)
+                # else:
+                    # setattr(self, key, value)
 
     def __str__(self):
         """Returns the class represented as a string"""
