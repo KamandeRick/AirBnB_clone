@@ -27,5 +27,10 @@ class Test_BaseModel(unittest.TestCase):
         classDoc = __import__("models.base_model").base_model.BaseModel.__doc__
         self.assertGreater(len(classDoc), 0)
 
-    if __name__ == "__main__":
-        unittest.main()
+    def test_id_is_string(self):
+        """test id is type string"""
+        self.assertEqual(type(BaseModel().id, str))
+
+
+if __name__ == "__main__":
+    unittest.main()
