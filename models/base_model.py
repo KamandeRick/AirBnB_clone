@@ -16,22 +16,22 @@ class BaseModel:
             self.updated_at = self.created_at
             models.storage.new(self)
         else:
-            attribute_mapping = {
-                    'created_at': 'created_at',
-                    'updated_at': 'updated_at',
-                    'id': 'id'
-                    }
+            # attribute_mapping = {
+            # 'created_at': 'created_at',
+            # 'updated_at': 'updated_at',
+            # 'id': 'id'
+            # }
 
             for key, value in kwargs.items():
                 if key == "__class__":
                     continue
-                elif key in attribute_mapping:
-                    attribute_name = attribute_mapping[key]
-                    if key in ['created_at', 'updated_at']:
-                        value = datetime.fromisoformat(value)
-                    setattr(self, attribute_name, value)
-                # elif key == "created_at" or key == "updated_at":
-                    # setattr(self, key, datetime.fromisoformat(value))
+                # elif key in attribute_mapping:
+                    # attribute_name = attribute_mapping[key]
+                    # if key in ['created_at', 'updated_at']:
+                    # value = datetime.fromisoformat(value)
+                    # setattr(self, attribute_name, value)
+                elif key == "created_at" or key == "updated_at":
+                    setattr(self, key, datetime.fromisoformat(value))
                 # elif key == "updated_at":
                     # value = datetime.fromisoformat(value)
                     # self.updated_at = value
@@ -40,8 +40,8 @@ class BaseModel:
                     # self.created_at = value
                 # elif key == "id":
                     # self.id = str(value)
-                # else:
-                    # setattr(self, key, value)
+                else:
+                    setattr(self, key, value)
 
     def __str__(self):
         """Returns the class represented as a string"""
