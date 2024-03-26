@@ -29,7 +29,7 @@ class Test_BaseModel(unittest.TestCase):
 
     def test_id_is_string(self):
         """test id is type string"""
-        self.assertEqual(type(BaseModel().id), str)
+        self.assertEqual(str, type(BaseModel().id))
 
 
 if __name__ == "__main__":
