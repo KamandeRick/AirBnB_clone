@@ -28,7 +28,7 @@ class BaseModel:
         """Returns the class represented as a string"""
         # class_name = type(self).__name__
         class_name = self.__class__.__name__
-        return "[{}]({}) {}".format(class_name, self.id, self.__dict__)
+        return "[{}] ({}) {}".format(class_name, self.id, self.__dict__)
 
     def to_dict(self):
         """returns class represented as dictionary"""
