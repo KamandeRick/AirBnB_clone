@@ -5,6 +5,7 @@ from models.base_model import BaseModel
 from unittest.mock import patch
 from datetime import datetime
 from uuid import UUID
+from time import sleep
 
 
 class Test_BaseModel(unittest.TestCase):
@@ -46,6 +47,18 @@ class Test_BaseModel(unittest.TestCase):
     def test_created_at_datetime(self):
         """test if created at is datetime object"""
         self.assertEqual(datetime, type(BaseModel().created_at))
+
+    def test_created_at_timestamp(self):
+        """Test if timestamp is not simillar"""
+        bm1 = BaseModel()
+        sleep(0.1)
+        bm2 = BaseModel()
+        self.assertNotEqual(bm1.created_at, bm2.created_at)
+
+    def test_updated_at_is_datetime(self):
+        """test if updated at is datetime object"""
+        self.assertEqual(datetime, type(BaseModel().updated_at))
+
 
 
 if __name__ == "__main__":
