@@ -31,9 +31,21 @@ class Test_BaseModel(unittest.TestCase):
         """test id is type string"""
         self.assertEqual(str, type(BaseModel().id))
 
-    def test_created_at_is_datetime(self):
+    def test_id_is_valid(self):
+        """test if id is valid"""
+        bm = BaseModel()
+        id_value = UUID(bm.id)
+        self.assertIs(UUID, type(id_value))
+
+    def test_id_is_unique(self):
+        """test if id is unique"""
+        bm1 = BaseModel()
+        bm2 = BaseModel()
+        self.assertNotEqual(bm1.id, bm2.id)
+
+    def test_created_at_datetime(self):
         """test if created at is datetime object"""
-        self.assertEqual(datetime, type(BaseModel().created_at)
+        self.assertEqual(datetime, type(BaseModel().created_at))
 
 
 if __name__ == "__main__":
