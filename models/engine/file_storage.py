@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"module defining filestorage management class"""
+"""module defining filestorage management class"""
 from models.review import Review
 from models.place import Place
 from models.amenity import Amenity
