@@ -59,6 +59,12 @@ class Test_BaseModel(unittest.TestCase):
         """test if updated at is datetime object"""
         self.assertEqual(datetime, type(BaseModel().updated_at))
 
+    def test__str__(self):
+        """test the string representation output"""
+        bm1 = BaseModel()
+        bm2 = BaseModel()
+        self.assertNotEqual(bm1.__str__(), bm2.__str__())
+
 
 
 if __name__ == "__main__":
