@@ -80,6 +80,14 @@ class Test_BaseModel(unittest.TestCase):
         }
         self.assertEqual(self.base_model.to_dict(), dictionary_mapping)
 
+    def test_save(self):
+        """test if save method works as expected"""
+        bm = BaseModel()
+        sleep(0.5)
+        updated_at = bm.updated_at
+        bm.save()
+        self.assertLess(updated_at,bm.updated_at)
+
 
 
 if __name__ == "__main__":
