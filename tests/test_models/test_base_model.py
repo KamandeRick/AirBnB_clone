@@ -71,5 +71,6 @@ class Test_BaseModel(unittest.TestCase):
         self.assertTrue(dict, type(bm.to_dict()))
 
 
+
 if __name__ == "__main__":
     unittest.main()
