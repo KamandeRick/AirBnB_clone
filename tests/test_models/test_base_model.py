@@ -65,6 +65,10 @@ class Test_BaseModel(unittest.TestCase):
         bm2 = BaseModel()
         self.assertNotEqual(bm1.__str__(), bm2.__str__())
 
+    def test_to_dict_is_dictionary(self):
+        """Test if the method to_dict returns a dictionary"""
+        bm = BaseModel()
+        self.assertTrue(dict, type(bm.to_dict()))
 
 
 if __name__ == "__main__":
