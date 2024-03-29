@@ -31,6 +31,10 @@ class Test_BaseModel(unittest.TestCase):
         """test id is type string"""
         self.assertEqual(str, type(BaseModel().id))
 
+    def test_created_at_is_datetime(self):
+        """test if created at is datetime object"""
+        self.assertEqual(datetime, type(BaseModel().created_at)
+
 
 if __name__ == "__main__":
     unittest.main()
