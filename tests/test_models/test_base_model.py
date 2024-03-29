@@ -70,6 +70,16 @@ class Test_BaseModel(unittest.TestCase):
         bm = BaseModel()
         self.assertTrue(dict, type(bm.to_dict()))
 
+    def test_to_dict(self):
+        """test the dictionary representation of object"""
+        dictionary_mapping = {
+                'id': self.base_model.id,
+                'created_at': self.base_model.created_at.isoformat(),
+                'updated_at': self.base_model.updated_at.isoformat(),
+                '__class__': 'BaseModel'
+        }
+        self.assertEqual(self.base_model.to_dict(), dictionary_mapping)
+
 
 
 if __name__ == "__main__":
