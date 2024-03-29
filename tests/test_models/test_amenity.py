@@ -42,5 +42,6 @@ class Test_Amenity(unittest.TestCase):
         """test if created at is datetime object"""
         self.assertEqual(datetime, type(Amenity().created_at))
 
+
 if __name__ == "__main__":
     unittest.main()
