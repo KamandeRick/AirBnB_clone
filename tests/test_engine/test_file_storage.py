@@ -80,5 +80,29 @@ class TestFileStorage(unittest.TestCase):
 
         self.assertIn("BaseModel.{}".format(obj1.id), json_string)
 
+    def test_new(self):
+        """Test case for new method"""
+        file_storage = FileStorage()
+        obj1 = BaseModel()
+        obj2 = BaseModel()
+
+        file_storage.new(obj1)
+        file_storage.new(obj2)
+
+        self.assertIn(
+                "BaseModel.{}".format(obj1.id),
+                file_storage._FileStorage__objects)
+        self.assertIn(
+                "BaseModel.{}".format(obj2.id),
+                file_storage._FileStorage__objects)
+
+        self.assertEqual(
+                file_storage._FileStorage__objects[
+                    "BaseModel.{}".format(obj1.id)], obj1)
+        self.assertEqual(
+                file_storage._FileStorage__objects[
+                    "BaseModel.{}".format(obj2.id)], obj2)
+
+
 if __name__ == "__main__":
     unittest.main()
