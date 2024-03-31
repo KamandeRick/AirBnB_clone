@@ -35,11 +35,17 @@ class TestFileStorage(unittest.TestCase):
         # self.assertGreater(len(methodDoc), 0)
 
     def test_FileStorage_no_args(self):
+        """test FileStorage instantiation without args"""
         self.assertEqual(type(FileStorage()), FileStorage)
 
     def test_FileStorage_with_args(self):
+        """test FileStorage instantiation with args"""
         with self.assertRaises(TypeError):
             FileStorage(None)
+
+    def test_file_path_type(self):
+        """test FileStorage file path is private"""
+        self.assertEqual(str, type(FileStorage._FileStorage__file_path))
 
 
 if __name__ == "__main__":
