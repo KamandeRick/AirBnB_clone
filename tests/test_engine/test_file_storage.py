@@ -47,6 +47,10 @@ class TestFileStorage(unittest.TestCase):
         """test FileStorage file path is private"""
         self.assertEqual(str, type(FileStorage._FileStorage__file_path))
 
+    def testFileStorage_objects_is_private_dict(self):
+        """test if storage object is private dictionary"""
+        self.assertEqual(dict, type(FileStorage._FileStorage__objects))
+
 
 if __name__ == "__main__":
     unittest.main()
