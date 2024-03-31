@@ -5,7 +5,7 @@ import models
 import unittest
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
-#from models.engine.file_storage import reload, all, new, save
+# from models.engine.file_storage import reload, all, new, save
 
 
 class TestFileStorage(unittest.TestCase):
@@ -50,7 +50,7 @@ class TestFileStorage(unittest.TestCase):
     def testFileStorage_objects_is_private_dict(self):
         """test if storage object is private dictionary"""
         self.assertEqual(dict, type(FileStorage._FileStorage__objects))
-    
+
     def test_objects(self):
         """Test for objects method"""
         file_storage = FileStorage()
@@ -102,7 +102,7 @@ class TestFileStorage(unittest.TestCase):
         self.assertEqual(
                 file_storage._FileStorage__objects[
                     "BaseModel.{}".format(obj2.id)], obj2)
-    
+
     def test_reload(self):
         """Test for reload method"""
         file_storage = FileStorage()
@@ -112,6 +112,7 @@ class TestFileStorage(unittest.TestCase):
         objects = file_storage._FileStorage__objects
 
         self.assertIn("BaseModel.{}".format(base_model.id), objects)
+
 
 if __name__ == "__main__":
     unittest.main()
