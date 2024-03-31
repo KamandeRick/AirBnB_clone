@@ -50,6 +50,17 @@ class TestFileStorage(unittest.TestCase):
     def testFileStorage_objects_is_private_dict(self):
         """test if storage object is private dictionary"""
         self.assertEqual(dict, type(FileStorage._FileStorage__objects))
+    
+    def test_objects(self):
+        """Test for objects method"""
+        file_storage = FileStorage()
+        file_storage._FileStorage__objects = {}
+        self.assertEqual(file_storage._FileStorage__objects, {})
+        obj = BaseModel()
+        file_storage.new(obj)
+        objects = file_storage.all()
+        self.assertIn("BaseModel.{}".format(obj.id), objects)
+        self.assertEqual(objects["BaseModel.{}".format(obj.id)], obj)
 
 
 if __name__ == "__main__":
