@@ -36,6 +36,28 @@ class HBNBCommand(cmd.Cmd):
             models.storage.save()
             print(obj.id)
 
+    def do_show(self, arg):
+        """Method to Show instance based on id"""
+        class_name, obj_id = None, None
+        args = arg.split(' ')
+        if len(args) > 0:
+            class_name = args[0]
+        if len(args) > 1:
+            obj_id = args[1]
+        if not class_name:
+            print('** class name missing **')
+        elif not obj_id:
+            print('** instance id missing **')
+        elif not self.class_list.get(class_name):
+            print("** class doesn't exist **")
+        else:
+            k = class_name + "." + obj_id
+            obj = models.storage.all().get(k)
+            if not obj:
+                print('** no instance found **')
+            else:
+                print(obj)
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
