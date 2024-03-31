@@ -62,6 +62,12 @@ class TestFileStorage(unittest.TestCase):
         self.assertIn("BaseModel.{}".format(obj.id), objects)
         self.assertEqual(objects["BaseModel.{}".format(obj.id)], obj)
 
+    def test_all(self):
+        """test for all method of FileStorageClass"""
+        file_storage = FileStorage()
+        objects = file_storage.all()
+        self.assertEqual(objects, file_storage._FileStorage__objects)
+
 
 if __name__ == "__main__":
     unittest.main()
