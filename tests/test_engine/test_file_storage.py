@@ -62,13 +62,13 @@ class TestFileStorage(unittest.TestCase):
         self.assertIn("BaseModel.{}".format(obj.id), objects)
         self.assertEqual(objects["BaseModel.{}".format(obj.id)], obj)
 
-    def test_all(self):
+    def test_method_all(self):
         """test for all method of FileStorageClass"""
         file_storage = FileStorage()
         objects = file_storage.all()
         self.assertEqual(objects, file_storage._FileStorage__objects)
 
-    def test_save(self):
+    def test_method_save(self):
         """test case for save method of fileStorage class"""
         file_storage = FileStorage()
         obj1 = BaseModel()
@@ -80,7 +80,7 @@ class TestFileStorage(unittest.TestCase):
 
         self.assertIn("BaseModel.{}".format(obj1.id), json_string)
 
-    def test_new(self):
+    def test_method_new(self):
         """Test case for new method"""
         file_storage = FileStorage()
         obj1 = BaseModel()
@@ -103,7 +103,7 @@ class TestFileStorage(unittest.TestCase):
                 file_storage._FileStorage__objects[
                     "BaseModel.{}".format(obj2.id)], obj2)
 
-    def test_reload(self):
+    def test_method_reload(self):
         """Test for reload method"""
         file_storage = FileStorage()
         base_model = BaseModel()
