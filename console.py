@@ -18,13 +18,13 @@ class HBNBCommand(cmd.Cmd):
     """ Console program for airbnb clone"""
     prompt = '(hbnb) '
     class_list = {'BaseModel': BaseModel, 'State': State, 'City': City,
-               'Amenity': Amenity, 'Place': Place, 'Review': Review,
-               'User': User}
+                  'Amenity': Amenity, 'Place': Place, 'Review': Review,
+                  'User': User}
 
     def empty_line(self):
         """Method to ensure empty lines do not execute"""
         pass
-    
+
     def do_create(self, class_name=None):
         """Method to create BaseModel obj, save it and prints it's id"""
         if not class_name:
@@ -84,13 +84,17 @@ class HBNBCommand(cmd.Cmd):
     def do_all(self, arg):
         """Method to Print all instances based on the class name"""
         if not arg:
-            print([str(value) for key, value in models.storage.all().items()])
+            print(
+                [str(value) for key, value in models.storage.all().items()]
+                )
         else:
             if not self.class_list.get(arg):
                 print("** class doesn't exist **")
                 return False
-            print([str(value) for key, value in models.storage.all().items()
-                   if type(value) is self.class_list.get(arg)])
+            print(
+                [str(value) for key, value in models.storage.all().items()
+                if type(value) is self.class_list.get(arg)]
+                )
 
     def do_quit(self, arg):
         """Method to quit and exit the program"""
@@ -112,11 +116,15 @@ class HBNBCommand(cmd.Cmd):
             return False
         split_line = line.split('(', 1)
         if len(split_line) < 2:
-            print('*** Unknown syntax: {}.{}'.format(class_name, split_line[0]))
+            print(
+                '*** Unknown syntax: {}.{}'.format(class_name, split_line[0])
+                )
             return False
         method_name, args = split_line[0], split_line[1].rstrip(')')
         if method_name not in ['all', 'count', 'show', 'destroy', 'update']:
-            print('*** Unknown syntax: {}.{}'.format(class_name, line))
+            print(
+                '*** Unknown syntax: {}.{}'.format(class_name, line)
+                )
             return False
         if method_name == 'all':
             self.do_all(class_name)
@@ -140,11 +148,16 @@ class HBNBCommand(cmd.Cmd):
                 args = args.replace(',', ' ', 1)
                 split_line = list(shlex(args))
                 split_line[0] = split_line[0].strip('"')
-                self.do_update(" ".join([class_name, obj_id, split_line[0], split_line[1]]))
+                self.do_update(
+                    " ".join([class_name, obj_id, split_line[0], split_line[1]])
+                    )
 
-     def do_update(self, arg):
+    def do_update(self, arg):
         """Updates an instance based on the class name and id"""
-        class_name, obj_id, attribute_name, attribute_value = None, None, None, None
+        class_name = None
+        obj_id = None
+        attribute_name = None
+        attribute_value = None
         updatetime = datetime.now()
         args = arg.split(' ', 3)
         if len(args) > 0:
