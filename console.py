@@ -103,7 +103,7 @@ class HBNBCommand(cmd.Cmd):
     def default(self, line):
         """Method to handle class commands"""
         split_line = line.split('.', 1)
-        if len(ln) < 2:
+        if len(split_line) < 2:
             print('*** Unknown syntax:', split_line[0])
             return False
         class_name, line = split_line[0], split_line[1]
@@ -141,6 +141,47 @@ class HBNBCommand(cmd.Cmd):
                 split_line = list(shlex(args))
                 split_line[0] = split_line[0].strip('"')
                 self.do_update(" ".join([class_name, obj_id, split_line[0], split_line[1]]))
+
+     def do_update(self, arg):
+        """Updates an instance based on the class name and id"""
+        class_name, obj_id, attribute_name, attribute_value = None, None, None, None
+        updatetime = datetime.now()
+        args = arg.split(' ', 3)
+        if len(args) > 0:
+            class_name = args[0]
+        if len(args) > 1:
+            obj_id = args[1]
+        if len(args) > 2:
+            attribute_name = args[2]
+        if len(args) > 3:
+            attribute_value = list(shlex(args[3]))[0].strip('"')
+        if not class_name:
+            print('** class name missing **')
+        elif not obj_id:
+            print('** instance id missing **')
+        elif not attribute_name:
+            print('** attribute name missing **')
+        elif not attribute_value:
+            print('** value missing **')
+        elif not self.class_list.get(class_name):
+            print("** class doesn't exist **")
+        else:
+            key = class_name + "." + obj_id
+            obj = models.storage.all().get(key)
+            if not obj:
+                print('** no instance found **')
+            else:
+                if hasattr(obj, attribute_name):
+                    attribute_value = type(getattr(obj, attribute_name))(attribute_value)
+                else:
+                    attribute_value = self.getType(attribute_value)(attribute_value)
+                setattr(obj, attribute_name, attribute_value)
+                obj.updated_at = updatetime
+                models.storage.save()
+
+    def postloop(self):
+        """print new line after each loop"""
+        print()
 
 
 if __name__ == "__main__":
