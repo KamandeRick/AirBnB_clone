@@ -33,6 +33,17 @@ class HBNBCommand(cmd.Cmd):
         """Method to ensure empty lines do not execute"""
         pass
 
+    def do_create(self, class_name=None):
+        """Method to create BaseModel obj, save it and prints it's id"""
+        if not class_name:
+            print('** class name missing **')
+        elif not self.class_list.get(class_name):
+            print('** class doesn\'t exist **')
+        else:
+            obj = self.class_list[class_name]()
+            models.storage.save()
+            print(obj.id)
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
