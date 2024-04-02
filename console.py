@@ -90,15 +90,20 @@ class HBNBCommand(cmd.Cmd):
                 models.storage.save()
 
     def do_all(self, arg):
-        """Method to Print all instances based on the class name or not"""
-    if not arg:
-        print([str(value) for key, value in models.storage.all().items()])
-    else:
-        if not self.class_list.get(arg):
-            print("** class doesn't exist **")
-            return False
-        print([str(value) for key, value in models.storage.all().items()
-               if type(value) is self.class_list.get(arg)])
+        """Prints all instances based on the class name or not"""
+        if not arg:
+            insts = [str(inst) for inst in models.storage.all().values()]
+            print(insts)
+        else:
+            if arg not in self.class_list:
+                print("** class doesn't exist **")
+                return False
+            insts = [
+                    str(inst)
+                    for inst in models.storage.all().values()
+                    if isinstance(inst, self.class_list[arg])
+                    ]
+            print(insts)
 
 
 if __name__ == "__main__":
