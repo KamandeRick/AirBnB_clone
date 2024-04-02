@@ -154,5 +154,8 @@ class HBNBCommand(cmd.Cmd):
                 models.storage.save()
 
 
+console_obj = HBNBCommand
+
+
 if __name__ == "__main__":
     HBNBCommand().cmdloop()
