@@ -29,7 +29,7 @@ class HBNBCommand(cmd.Cmd):
         """Method to exit program on EOF"""
         return True
 
-    def empty_line(self):
+    def emptyline(self):
         """Method to ensure empty lines do not execute"""
         pass
 
