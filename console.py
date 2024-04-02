@@ -139,7 +139,10 @@ class HBNBCommand(cmd.Cmd):
             else:
                 if hasattr(obj, attribute_name):
                     attribute_type = type(getattr(obj, attribute_name))
-                    attribute_value = attribute_type(attribute_value)
+                    if callable(attribute_type):
+                        attribute_value = attribute_type(attribute_value)
+                    else:
+                        pass
                 else:
                     attribute_type = self.getType(attribute_value)
                     attribute_value = attribute_type(attribute_value)
