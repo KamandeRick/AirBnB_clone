@@ -145,7 +145,10 @@ class HBNBCommand(cmd.Cmd):
                         pass
                 else:
                     attribute_type = self.getType(attribute_value)
-                    attribute_value = attribute_type(attribute_value)
+                    if callable(attribute_type):
+                        attribute_value = attribute_type(attribute_value)
+                    else:
+                        pass
                 setattr(obj, attribute_name, attribute_value)
                 obj.updated_at = updatetime
                 models.storage.save()
